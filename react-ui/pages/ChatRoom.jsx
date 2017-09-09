@@ -1,10 +1,9 @@
-import React from "react";
-import { connect } from "react-redux";
-import { push } from "react-router-redux";
+import React from 'react';
+import {connect} from 'react-redux';
 
-import { load } from "../actions/chat_room";
-import OccupantList from "../components/OccupantList";
-import Chat from "../components/Chat";
+import {load, saySomething} from '../actions/chat_room';
+import Chat from '../components/Chat';
+import OccupantList from '../components/OccupantList';
 
 class ChatRoom extends React.Component {
 
@@ -22,13 +21,12 @@ class ChatRoom extends React.Component {
 						<OccupantList occupants={occupants}/>
 					</div>
 					<div class="col-md-9">
-						<Chat conversation={conversation}/>
+						<Chat conversation={conversation} saySomething={this.props.saySomething.bind(this)}/>
 					</div>
 				</div>
 			</div>
 		);
 	}
-
 }
 
 const mapStateToProps = ( state ) => {
@@ -37,7 +35,8 @@ const mapStateToProps = ( state ) => {
 
 const mapDispatchToProps = ( dispatch ) => {
 	return {
-		load: ( ) => dispatch(load( ))
+		load        : () => dispatch(load()),
+		saySomething: (message) => dispatch(saySomething(message))
 	};
 };
 

@@ -6,7 +6,7 @@ const Schema = mongoose.Schema,
       Types  = mongoose.Schema.Types;
 
 const Message = new Schema({
-	speaker: [Speaker],
+	speaker: Speaker,
 	message: Types.String,
 });
 
