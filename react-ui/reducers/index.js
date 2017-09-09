@@ -1,9 +1,11 @@
 import {routerReducer} from "react-router-redux";
 import {combineReducers} from "redux";
-import Application from "./application";
+import application from "./application";
+import chat_room from "./chat_room";
 
 const reducer = combineReducers({
-	app: Application,
+	app: application,
+	chat_room: chat_room,
 	routing: routerReducer
 });
 

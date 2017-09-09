@@ -1,3 +1,3 @@
 import Application from "./Application";
-
-export default {...Application};
+import chat_room from "./chat_room";
+export default {...Application, ...chat_room};

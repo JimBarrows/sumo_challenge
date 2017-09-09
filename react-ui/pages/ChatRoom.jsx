@@ -1,34 +1,44 @@
 import React from "react";
-import {connect} from "react-redux";
-import {push} from "react-router-redux";
+import { connect } from "react-redux";
+import { push } from "react-router-redux";
 
-class DeckList extends React.Component {
+import { load } from "../actions/chat_room";
+import OccupantList from "../components/OccupantList";
+import Chat from "../components/Chat";
 
-	componentWillMount() {
-		// this.props.load();
+class ChatRoom extends React.Component {
+
+	componentWillMount( ) {
+		this.props.load( );
 	}
 
-	render() {
-
+	render( ) {
+		let { occupants, conversation } = this.props;
 		return (
-				<div>
-          <h1>Chat Room</h1>
-        </div>
+			<div class="chat_room">
+				<h1>Chat Room</h1>
+				<div class="row">
+					<div class="col-md-3">
+						<OccupantList occupants={occupants}/>
+					</div>
+					<div class="col-md-9">
+						<Chat conversation={conversation}/>
+					</div>
+				</div>
+			</div>
 		);
 	}
 
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ( state ) => {
+	return { chat_room: state.chat_room.data };
+};
+
+const mapDispatchToProps = ( dispatch ) => {
 	return {
-		// list: state.decks.list
+		load: ( ) => dispatch(load( ))
 	};
 };
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		// load: () => dispatch(load()),
-	};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(DeckList);
+export default connect( mapStateToProps, mapDispatchToProps )( ChatRoom );
