@@ -1,18 +1,20 @@
 import constants from "../constants";
-import {createReducer} from "../utils";
+import { createReducer } from "../utils";
 
-let {CHAT_ROOM_LOAD_BEGIN,
-CHAT_ROOM_LOAD_SUCCESS} = constants;
+let { CHAT_ROOM_LOAD_BEGIN, CHAT_ROOM_LOAD_SUCCESS } = constants;
 
 const initialState = {
-		occupants:[],
-		conversation:[]
+	id: "",
+	name: "",
+	occupants: [],
+	conversation: [ ]
 };
 
 export default createReducer(initialState, {
-	[CHAT_ROOM_LOAD_SUCCESS]: (state, payload) => Object.assign({}, {
+	[ CHAT_ROOM_LOAD_SUCCESS ]: ( state, payload ) => Object.assign({}, {
+		id: payload.data.id,
+		name: payload.data.name,
 		occupants: payload.data.occupants,
 		conversation: payload.data.conversation
 	})
-})
-;
+});

@@ -13,10 +13,10 @@ class ChatRoom extends React.Component {
 	}
 
 	render( ) {
-		let { occupants, conversation } = this.props;
+		let { id, name, occupants, conversation } = this.props.chat_room;
 		return (
-			<div class="chat_room">
-				<h1>Chat Room</h1>
+			<div id={"chat_room_" + id} class="chat_room">
+				<h1>{name}</h1>
 				<div class="row">
 					<div class="col-md-3">
 						<OccupantList occupants={occupants}/>
@@ -32,7 +32,7 @@ class ChatRoom extends React.Component {
 }
 
 const mapStateToProps = ( state ) => {
-	return { chat_room: state.chat_room.data };
+	return { chat_room: state.chat_room };
 };
 
 const mapDispatchToProps = ( dispatch ) => {
