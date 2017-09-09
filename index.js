@@ -1,6 +1,6 @@
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
-import config, { defaultEnvironment, localEnvironment, developmentEnvironment } from "./config";
+import config, {defaultEnvironment, developmentEnvironment, localEnvironment} from "./config";
 import express from "express";
 import flash from "connect-flash";
 import logger from "morgan";
@@ -10,10 +10,11 @@ import path from "path";
 import promise from "bluebird";
 import routes from "./routes/index";
 import session from "cookie-session";
-import { Strategy as LocalStrategy } from "passport-local";
+import {Strategy as LocalStrategy} from "passport-local";
 
 import {Account} from "./models";
 import userUi from "./routes/user";
+import chat_room from "./routes/chat_room";
 
 const app = express( );
 
@@ -52,6 +53,7 @@ mongoose.connect( config.mongoose.url, function( err ) {
 
 app.use( "/", routes );
 app.use( "/user", userUi );
+app.use("/api/chat_room", chat_room);
 
 // catch 404 and forward to error handler
 app.use( function( req, res, next ) {
