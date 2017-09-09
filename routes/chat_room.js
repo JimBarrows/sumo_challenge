@@ -11,10 +11,18 @@ router.get("/", function (req, res) {
 });
 
 router.get("/add_user", function (req, res) {
-	Room.findByIdAndUpdate("59b4264deb9ff8620928795f",
-			{$addToSet: {occupants: {id: req.user._id, name: req.user.username}}},
-			{safe: true, upsert: true, new: true})
-			.exec()
+	Room.findById("59b4264deb9ff8620928795f").exec()
+			.then(room => {
+				if (room.occupants.filter(o => o.id === req.user._id).isEmpty()) {
+					room.occupants.push({
+						id  : req.user._id,
+						name: req.user.name
+					});
+					return Room.update({_id: room._id}, room).exec();
+				} else {
+					return room;
+				}
+			})
 			.then(savedRoom => res.status(200).json(savedRoom).end())
 			.catch(error => res.status(400).json(error).end());
 });
