@@ -1,0 +1,21 @@
+extends layout
+
+block css
+    link( rel='stylesheet', href='/css/login.css')
+
+block content
+    if message && message.length > 0
+        .alert.alert-danger= message
+
+    form(action="/user/login",method="post").form-signin
+        h2.form-signin-heading Please sign in
+        label(for="username").sr-only Email Address
+        input( type="email" id="username" name="username", value=user.username, placeholder="Email address" required=true autofocus=true).form-control
+        label(for="password").sr-only Password
+        input(type="password",id="password" name="password", placeholder="Password").form-control
+        .checkbox
+            label
+                input(type="checkbox", id="rememberMe", name="rememberMe")
+                | Remember Me
+
+        button(id="loginButton" type="submit").btn.btn-lg.btn-primary.btn-block Log In
