@@ -7,8 +7,20 @@ import OccupantList from '../components/OccupantList';
 
 class ChatRoom extends React.Component {
 
+	componentDidMount() {
+		this.interval = setInterval(this.reload.bind(this), 500);
+	}
+
 	componentWillMount( ) {
 		this.props.load( );
+	}
+
+	componentWillUnmount() {
+		clearInterval(this.interval);
+	}
+
+	reload() {
+		this.props.load();
 	}
 
 	render( ) {
