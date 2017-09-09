@@ -1,14 +1,14 @@
-import axios from "axios";
-import {hashHistory, IndexRoute, Route, Router} from "react-router";
-import {Provider} from "react-redux";
-import React from "react";
-import ReactDOM from "react-dom";
-import {syncHistoryWithStore, push} from "react-router-redux";
+import axios from 'axios';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
+import {hashHistory, IndexRoute, Route, Router} from 'react-router';
+import {syncHistoryWithStore} from 'react-router-redux';
+import {addSelf} from './actions/chat_room';
 
-import Layout from "./components/layout";
-import {loginUserSuccess} from "./actions";
-import ChatRoom from "./pages/ChatRoom";
-import store from "./Store";
+import Layout from './components/layout';
+import ChatRoom from './pages/ChatRoom';
+import store from './Store';
 
 axios.create({
 	validateStatus: function (status) {
@@ -29,11 +29,4 @@ ReactDOM.render(<Provider store={store}>
 		</Provider>
 		, mountNode);
 
-let token = localStorage.getItem("token");
-if (token !== null) {
-	store.dispatch(loginUserSuccess(token));
-	store.dispatch(push("/"));
-	axios.defaults.headers = {
-		"x-access-token": token
-	};
-}
+store.dispatch(addSelf());
