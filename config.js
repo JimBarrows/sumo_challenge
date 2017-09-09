@@ -12,7 +12,7 @@ class Config {
 				logLevel: "dev"
 			},
 			mongoose: {
-				url: "mongodb://localhost/FlashCards"
+				url: "mongodb://localhost/sumo_challenge"
 			},
 			jwt: {
 				secret: "this is an incredible secret.  the best secret in the world",

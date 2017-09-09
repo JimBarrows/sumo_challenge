@@ -1,74 +1,32 @@
-import fs from "fs";
-
-class Config {
-
-	constructor() {
-		this._currentEnvironment = process.env.ENV || defaultEnvironment();
-		this._config             = {
-			server: {
-				port: 3000,
-				sessionKeys: ["superDoubleSecretKey1", "superTripleSecrektKey2", "supercalifragilisticexpialidocious"],
-				viewEngine: "pug",
-				logLevel: "dev"
-			},
-			mongoose: {
-				url: "mongodb://localhost/FlashCards"
-			},
-			jwt: {
-				secret: "this is an incredible secret.  the best secret in the world",
-				header: "x-access-token"
-			}
-		};
-		if (this._currentEnvironment !== defaultEnvironment()) {
-			_config = JSON.parse(fs.readFileSync(`config.${this.currentEnvironment}.json`, "utf8"));
-		}
-	}
-
-	get currentEnvironment() {
-		return this._currentEnvironment;
-	}
-
-	get jwt() {
-		return this._config.jwt;
-	}
-
-	get mongoose() {
-		return this._config.mongoose;
-	}
-
-	get server() {
-		return this._config.server;
-	}
-
-}
-
-const config = new Config();
-export default config;
-
-export function defaultEnvironment() {
-	return "default";
-}
-
-export function developmentEnvironment() {
-	return "dev";
-}
-
-export function environments() {
-	return [Config.defaultEnvironment(), Config.localEnvironment(), Config.developmentEnvironment(), Config.qaEnvironment(), Config.qaEnvironment(), Config.stagingEnvironment(), Config.prodEnvironment()];
-}
-
-export function localEnvironment() {
-	return "local";
-}
-
-export function prodEnvironment() {
-	return "prod";
-}
-
-export function qaEnvironment() {
-	return "qa";
-}
-
-export function stagingEnvironment() {
-	return "tag_environment_staging";
-}
+// {
+// 	// chat_room: data
+// 	id: 1,
+// 	name: "Default Chat Room",
+// 	occupants: [
+// 		{
+// 			id: 1,
+// 			name: "bob"
+// 		}, {
+// 			id: 2,
+// 			name: "christine"
+// 		}
+// 	],
+// 	conversation: [
+// 		{
+// 			id: 1,
+// 			speaker: {
+// 				id: 1,
+// 				name: "bob"
+// 			},
+// 			message: "Hi"
+// 		}, {
+// 			id: 2,
+// 			speaker: {
+// 				id: 2,
+// 				name: "christine"
+// 			},
+// 			// message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+// 			message: "hi"
+// 		}
+// 	]
+// }
