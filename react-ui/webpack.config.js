@@ -3,6 +3,8 @@
 var path         = require("path");
 var webpack      = require("webpack");
 // var HtmlWebpackPlugin = require("html-webpack-plugin");
+
+console.log("path: ", path.resolve("./public/js"));
 var definePlugin = new webpack.DefinePlugin({
 	__DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true')),
 	__PRERELEASE__: JSON.stringify(JSON.parse(process.env.BUILD_PRERELEASE || 'false'))
@@ -13,7 +15,7 @@ module.exports   = {
 		main: "./react-ui/main.jsx"
 	},
 	output: {
-		path: __dirname + "/public/js",
+		path: path.resolve("./public/js"),
 		filename: "[name].js"
 	}
 	,

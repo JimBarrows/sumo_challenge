@@ -4,7 +4,10 @@ import {Provider} from "react-redux";
 import React from "react";
 import ReactDOM from "react-dom";
 import {syncHistoryWithStore, push} from "react-router-redux";
-import App from "./components/layout";
+
+import Layout from "./components/layout";
+import {loginUserSuccess} from "./actions";
+import ChatRoom from "./pages/ChatRoom";
 import store from "./Store";
 
 axios.create({
@@ -19,8 +22,8 @@ const mountNode = document.getElementById('app');
 
 ReactDOM.render(<Provider store={store}>
 			<Router history={history}>
-				<Route path="/" component={App}>
-					<IndexRoute component={RoomList}></IndexRoute>
+				<Route path="/" component={Layout}>
+					<IndexRoute component={ChatRoom}></IndexRoute>
 				</Route>
 			</Router>
 		</Provider>
