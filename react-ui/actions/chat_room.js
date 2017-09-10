@@ -33,7 +33,7 @@ export function load() {
 			}
 		});
 
-		axios.get('/api/chat_room').then(checkHttpStatus).then(parseJSON).then((data) => dispatch({
+		axios.get('/api/chat_room/59b4264deb9ff8620928795f').then(checkHttpStatus).then(parseJSON).then((data) => dispatch({
 			type   : CHAT_ROOM_LOAD_SUCCESS,
 			payload: {
 				data,

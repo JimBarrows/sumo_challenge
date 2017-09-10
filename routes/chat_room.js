@@ -3,8 +3,8 @@ import {Room} from '../models';
 
 const router = express.Router();
 
-router.get("/", function (req, res) {
-	Room.find({_id: "59b4264deb9ff8620928795f"}).exec()
+router.get("/:room_id", function (req, res) {
+	Room.find({_id: req.params["room_id"]}).exec()
 			.then(room_list => res.status(200).json(room_list[0]).end())
 			.catch(error => res.status(400).json(error).end());
 
