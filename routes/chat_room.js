@@ -11,7 +11,7 @@ router.get("/", function (req, res) {
 });
 
 
-router.post("/:room_id/say", function (req, res) {
+router.post("/say", function (req, res) {
 	let {message} = req.body;
 	Room.findByIdAndUpdate("59b4264deb9ff8620928795f",
 			{$push: {conversation: {speaker: {id: req.user._id, name: req.user.username}, message}}},
