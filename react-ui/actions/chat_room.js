@@ -62,3 +62,18 @@ export function saySomething(message) {
 	};
 }
 
+export function addSelf() {
+	return function (dispatch) {
+		axios.get("/api/chat_room/add_user")
+				.then(checkHttpStatus).then(parseJSON).then(data => dispatch({
+			type   : CHAT_ROOM_LOAD_SUCCESS,
+			payload: {
+				data,
+				status: API_STATUS_FINISHED,
+				result: API_RESULT_SUCCESS
+			}
+		}));
+
+	};
+}
+

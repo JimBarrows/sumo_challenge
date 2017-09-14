@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {hashHistory, IndexRoute, Route, Router} from 'react-router';
 import {syncHistoryWithStore} from 'react-router-redux';
-import {addSelf} from './actions/chat_room';
 
 import Layout from './components/Layout';
 import ChatRoom from './pages/ChatRoom';
@@ -28,4 +27,5 @@ ReactDOM.render(<Provider store={store}>
 			</Router>
 		</Provider>
 		, mountNode);
+
 
