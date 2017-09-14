@@ -29,4 +29,3 @@ ReactDOM.render(<Provider store={store}>
 		</Provider>
 		, mountNode);
 
-store.dispatch(addSelf());

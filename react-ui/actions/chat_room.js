@@ -8,21 +8,6 @@ let {
 	    CHAT_ROOM_SAY_BEGIN, CHAT_ROOM_SAY_FAILURE, CHAT_ROOM_SAY_SUCCESS
     } = constants;
 
-export function addSelf() {
-	return function (dispatch) {
-		axios.get("/api/chat_room/add_user")
-				.then(checkHttpStatus).then(parseJSON).then(data => dispatch({
-			type   : CHAT_ROOM_LOAD_SUCCESS,
-			payload: {
-				data,
-				status: API_STATUS_FINISHED,
-				result: API_RESULT_SUCCESS
-			}
-		}));
-
-	};
-}
-
 export function load() {
 	return function (dispatch) {
 
@@ -33,7 +18,7 @@ export function load() {
 			}
 		});
 
-		axios.get('/api/chat_room/59b4264deb9ff8620928795f').then(checkHttpStatus).then(parseJSON).then((data) => dispatch({
+		axios.get('/api/chat_room').then(checkHttpStatus).then(parseJSON).then((data) => dispatch({
 			type   : CHAT_ROOM_LOAD_SUCCESS,
 			payload: {
 				data,
