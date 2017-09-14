@@ -6,9 +6,9 @@ import {hashHistory, IndexRoute, Route, Router} from 'react-router';
 import {syncHistoryWithStore} from 'react-router-redux';
 import {addSelf} from './actions/chat_room';
 
-import Layout from './components/layout';
+import Layout from './components/Layout';
 import ChatRoom from './pages/ChatRoom';
-import store from './Store';
+import store from './store';
 
 axios.create({
 	validateStatus: function (status) {
